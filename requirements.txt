@@ -1,0 +1,13 @@
+flask==3.0.3
+opencv-python==4.10.0.84
+mediapipe==0.10.14
+numpy==1.26.4
+deepface==0.0.95
+pandas==2.2.2
+tensorflow==2.16.1
+tf-keras==2.16.0
+protobuf==4.25.3
+Pillow==10.4.0
+h5py==3.11.0
+ml-dtypes==0.3.2
+retina-face==0.0.17

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MediaPipe Flask Vision Studio</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">MediaPipe + Flask + DeepFace</p>
+        <h1>Vision Studio: Faces, Hands, Drawing, Writing, and Word Control</h1>
+        <p class="subtitle">Multi-face recognition, face management, finger analytics, custom gestures, and hand-controlled interaction.</p>
+      </div>
+      <div class="status-pill" id="connectionStatus">Connected</div>
+    </header>
+
+    <section class="grid">
+      <div class="camera-card">
+        <div class="video-wrap" id="videoWrap">
+          <img id="video" src="/video_feed" alt="Camera stream" />
+          <canvas id="drawCanvas"></canvas>
+          <div id="wordLayer" class="word-layer"></div>
+          <div id="cursorDot" class="cursor-dot"></div>
+        </div>
+        <div class="toolbar">
+          <button class="tool active" data-mode="draw">Draw</button>
+          <button class="tool" data-mode="write">Write</button>
+          <button class="tool" data-mode="move">Move Words</button>
+          <label class="color-control">Color <input type="color" id="drawColor" value="#ffffff" /></label>
+          <button id="clearCanvasBtn" class="secondary">Clear Canvas</button>
+          <button id="clearWordsBtn" class="secondary">Clear Words</button>
+        </div>
+        <div class="word-input-row">
+          <input id="wordInput" type="text" placeholder="Type a word or sentence, then add it to the camera area" />
+          <button id="addWordBtn">Add Word</button>
+        </div>
+      </div>
+
+      <aside class="panel">
+        <div class="card">
+          <h2>Face Status</h2>
+          <p class="big" id="faceSummary">No Face</p>
+          <p class="muted" id="faceDistance">Distance: -</p>
+          <p class="muted small" id="performanceText">Async recognition enabled</p>
+          <div id="facesList" class="faces-list"></div>
+        </div>
+
+        <div class="card">
+          <h2>Register Unknown Face</h2>
+          <div class="form-stack">
+            <select id="unknownSelect"></select>
+            <input id="personName" type="text" placeholder="Person name" />
+            <button id="registerBtn">Register Selected Unknown Face</button>
+          </div>
+          <p class="message" id="registerMessage"></p>
+        </div>
+
+        <div class="card">
+          <h2>People Management</h2>
+          <div class="form-stack">
+            <select id="peopleSelect"></select>
+            <input id="renameInput" type="text" placeholder="New name" />
+            <button id="renameBtn">Rename Person</button>
+            <button id="addSampleBtn" class="secondary">Add Current Unknown as Sample</button>
+            <button id="clearSamplesBtn" class="warning">Clear Samples</button>
+            <button id="deletePersonBtn" class="danger">Delete Person</button>
+          </div>
+          <ul id="peopleList" class="people-list"></ul>
+          <p class="message" id="peopleMessage"></p>
+        </div>
+
+        <div class="card">
+          <h2>Hand and Finger Analytics</h2>
+          <div id="handsList" class="hands-list">No hand visible</div>
+        </div>
+
+        <div class="card">
+          <h2>Custom Gesture Rules</h2>
+          <p class="muted">Create simple gestures from open/closed finger states.</p>
+          <div class="form-stack">
+            <input id="gestureName" type="text" placeholder="Gesture name" />
+            <div class="finger-checks">
+              <label><input type="checkbox" data-finger="thumb" /> Thumb</label>
+              <label><input type="checkbox" data-finger="index" /> Index</label>
+              <label><input type="checkbox" data-finger="middle" /> Middle</label>
+              <label><input type="checkbox" data-finger="ring" /> Ring</label>
+              <label><input type="checkbox" data-finger="pinky" /> Pinky</label>
+            </div>
+            <button id="saveGestureBtn">Save Gesture</button>
+          </div>
+          <div id="gesturesList" class="gestures-list"></div>
+          <p class="message" id="gestureMessage"></p>
+        </div>
+      </aside>
+    </section>
+  </main>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
